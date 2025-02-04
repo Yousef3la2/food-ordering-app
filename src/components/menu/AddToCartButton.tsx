@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Image from "next/image";
@@ -17,11 +16,7 @@ import PickSize from "./PickSize";
 // import DoughType from "./DoughType";
 import Extras from "./Extras";
 
-const sizes = [
-  { id: crypto.randomUUID, name: "Small", price: 0 },
-  { id: crypto.randomUUID, name: "Meduim", price: 4 },
-  { id: crypto.randomUUID, name: "Large", price: 8 },
-];
+import { ProductWithRelations } from "@/types/product";
 
 // const types = [
 //   { id: crypto.randomUUID, name: "Pan", price: 0 },
@@ -31,17 +26,7 @@ const sizes = [
 //   { id: crypto.randomUUID, name: "Beef n Chedder Stuffed", price: 8 },
 // ];
 
-const extras = [
-  { id: crypto.randomUUID, name: "Cheese", price: 48 },
-  { id: crypto.randomUUID, name: "Green Pepper", price: 25 },
-  { id: crypto.randomUUID, name: "Garlic", price: 25 },
-  { id: crypto.randomUUID, name: "Tomato", price: 25 },
-  //   { id: crypto.randomUUID, name: "Black Olives", price: 30 },
-  //   { id: crypto.randomUUID, name: "Mushroom", price: 30 },
-  //   { id: crypto.randomUUID, name: "Onion", price: 25 },
-];
-
-function AddToCartButton({ item }: { item: any }) {
+function AddToCartButton({ item }: { item: ProductWithRelations }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -64,7 +49,7 @@ function AddToCartButton({ item }: { item: any }) {
         <div className="space-y-10">
           <div className="space-y-4 text-center">
             <Label htmlFor="pick-size">Pick your size</Label>
-            <PickSize sizes={sizes} item={item} />
+            <PickSize Sizes={item.Size} item={item} />
           </div>
           {/* <div className="space-y-4 text-center">
             <Label htmlFor="dough-type">Choose the dough</Label>
@@ -72,7 +57,7 @@ function AddToCartButton({ item }: { item: any }) {
           </div> */}
           <div className="space-y-4 text-center">
             <Label htmlFor="add-extras">Any extras?</Label>
-            <Extras extras={extras} />
+            <Extras extras={item.extras} />
           </div>
         </div>
         <DialogFooter>
