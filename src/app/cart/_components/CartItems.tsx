@@ -4,22 +4,22 @@ import { Button } from "@/components/ui/button";
 //import { deliveryFee, getSubTotal } from "@/lib/cart";
 import { formatCurrency } from "@/lib/formatters";
 import {
-  //removeItemFromCart,
+  removeItemFromCart,
   selectCartItems,
 } from "@/redux/features/cart/cartSlice";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 
 function CartItems() {
   const cart = useAppSelector(selectCartItems);
-  //const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   //const subTotal = getSubTotal(cart);
 
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cart));
-  }, [cart]);
+  // useEffect(() => {
+  //   localStorage.setItem("cartItems", JSON.stringify(cart));
+  // }, [cart]);
 
   return (
     <div>
@@ -28,7 +28,7 @@ function CartItems() {
           <ul>
             {cart.map((item) => (
               <li key={item.id}>
-                <div className="flex flex-col md:flex-row gap-6 justify-between">
+                <div className="flex flex-col md:flex-row gap-6 justify-between m-5">
                   <div className="flex items-center gap-2">
                     <div className="relative w-24 h-24">
                       <Image
@@ -43,9 +43,20 @@ function CartItems() {
                       <div className="relative">
                         {item.size && (
                           <span className="text-sm text-accent">
-                            Size: {item.size.name}
+                            Size: {item.size.name}{" "}
                           </span>
                         )}
+                        {item.dough && (
+                          <span className="text-sm text-accent">
+                            | Dough: {item.dough.name}
+                            {"   | "}
+                          </span>
+                        )}
+                        {
+                          <span className="text-sm text-black">
+                            x{item.quantity}
+                          </span>
+                        }
                         {item.extras && item.extras.length > 0 && (
                           <div className="flex gap-1">
                             <span>Extras:</span>
@@ -53,16 +64,13 @@ function CartItems() {
                               {item.extras.map((extra) => (
                                 <li key={extra.id}>
                                   <span className="text-sm text-accent">
-                                    {extra.name} {formatCurrency(extra.price)}
+                                    {extra.name} {formatCurrency(extra.price)}{" "}
                                   </span>
                                 </li>
                               ))}
                             </ul>
                           </div>
                         )}
-                        <span className="absolute right-0 top-0 text-sm text-black">
-                          x{item.quantity}
-                        </span>
                       </div>
                     </div>
                   </div>
@@ -71,9 +79,9 @@ function CartItems() {
                       {formatCurrency(item.basePrice)}
                     </strong>
                     <Button
-                      //   onClick={() =>
-                      //     dispatch(removeItemFromCart({ id: item.id }))
-                      //   }
+                      onClick={() =>
+                        dispatch(removeItemFromCart({ id: item.id }))
+                      }
                       variant="secondary"
                       className="border"
                     >

@@ -21,9 +21,12 @@ import { addCartItem, selectCartItems } from "@/redux/features/cart/cartSlice";
 import { Dough, DoughTypes, Extra, ProductSizes, Size } from "@prisma/client";
 import { useState } from "react";
 import { formatCurrency } from "@/lib/formatters";
+import { getItemQuantity } from "@/lib/cart";
+import ChooseQuantity from "./ChooseQuantity";
 
 function AddToCartButton({ item }: { item: ProductWithRelations }) {
   const cart = useAppSelector(selectCartItems);
+  const quantity = getItemQuantity(item.id, cart);
   const dispatch = useAppDispatch();
   const defaultSize =
     cart.find((element) => element.id === item.id)?.size ||
@@ -114,13 +117,23 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
           </div>
         </div>
         <DialogFooter>
-          <Button
-            type="submit"
-            onClick={handleAddToCart}
-            className="w-full h-10"
-          >
-            Add to cart {formatCurrency(totalPrice)}
-          </Button>
+          {quantity === 0 ? (
+            <Button
+              type="submit"
+              onClick={handleAddToCart}
+              className="w-full h-10"
+            >
+              Add to cart {formatCurrency(totalPrice)}
+            </Button>
+          ) : (
+            <ChooseQuantity
+              quantity={quantity}
+              item={item}
+              selectedSize={selectedSize}
+              selectedExtras={selectedExtras}
+              selectedDough={selectedDough}
+            />
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>
