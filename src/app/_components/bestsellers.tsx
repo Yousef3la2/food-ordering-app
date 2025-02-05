@@ -3,7 +3,7 @@ import Menu from "@/components/menu";
 import { getBestSellers } from "@/server/db/products";
 
 async function BestSellers() {
-  const bestSellers = await getBestSellers();
+  const bestSellers = await getBestSellers(3);
   console.log(bestSellers);
   return (
     <section>
@@ -11,7 +11,11 @@ async function BestSellers() {
         <div className="text-center mb-4">
           <MainHeading subTitle={"checkOut"} title={"Our Best Sellers"} />
         </div>
-        <Menu items={bestSellers} />
+        {bestSellers && bestSellers.length > 0 ? (
+          <Menu items={bestSellers} />
+        ) : (
+          <p className="text-accent text-center">No products found.</p>
+        )}
       </div>
     </section>
   );

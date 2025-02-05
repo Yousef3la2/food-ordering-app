@@ -5,5 +5,6 @@ export type ProductWithRelations = Prisma.ProductGetPayload<{
         Size: true;
         extras: true;
         Dough: true;
+        orders:true;
     };
 }>

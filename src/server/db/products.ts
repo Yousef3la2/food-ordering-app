@@ -2,13 +2,30 @@ import { cache } from "@/lib/cache";
 import { db } from "@/lib/prisma";
 
 export const getBestSellers = cache(
-    () => {
-        const bestSellers = db.product.findMany({
-            include: { Size: true, extras: true, Dough: true },
-          });
-          return bestSellers;
+  async (limit?: number) => {
+    const bestSellers = await db.product.findMany({
+      where: {
+        orders: {
+          some: {},
         },
-        ["best-sellers"],
-        {revalidate: 3600}
+      },
+      orderBy: {
+        orders: {
+          _count: 'desc', 
+        },
+      },
+      include: {
+        Size: true,
+        extras: true,
+        Dough: true,   
+        orders: true,  
+      },
+      take: limit,
+    });
+    return bestSellers;
+  },
+  ["best-sellers"],
+  { revalidate: 3600 }
 );
+
       
