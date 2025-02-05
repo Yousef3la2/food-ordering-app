@@ -13,7 +13,7 @@ function DoughType({ types }: { types: Dough[] }) {
           key={type.id}
           className="flex items-center space-x-2 border border-gray-100 rounded-md p-4"
         >
-          <RadioGroupItem value="default" id={type.id} />
+          <RadioGroupItem value={type.name} id={type.id} />
           <Label htmlFor={type.id}>
             {type.name} {formatCurrency(type.price)}
           </Label>
