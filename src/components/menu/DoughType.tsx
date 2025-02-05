@@ -5,7 +5,15 @@ import { Label } from "../ui/label";
 import { formatCurrency } from "@/lib/formatters";
 import { Dough } from "@prisma/client";
 
-function DoughType({ types }: { types: Dough[] }) {
+function DoughType({
+  types,
+  selectedDough,
+  setSelectedDough,
+}: {
+  types: Dough[];
+  selectedDough: Dough;
+  setSelectedDough: React.Dispatch<React.SetStateAction<Dough>>;
+}) {
   return (
     <RadioGroup defaultValue="comfortable" className="grid grid-cols-2 gap-4">
       {types.map((type) => (
@@ -13,7 +21,12 @@ function DoughType({ types }: { types: Dough[] }) {
           key={type.id}
           className="flex items-center space-x-2 border border-gray-100 rounded-md p-4"
         >
-          <RadioGroupItem value={type.name} id={type.id} />
+          <RadioGroupItem
+            value={selectedDough.name}
+            id={type.id}
+            checked={selectedDough.id === type.id}
+            onClick={() => setSelectedDough(type)}
+          />
           <Label htmlFor={type.id}>
             {type.name} {formatCurrency(type.price)}
           </Label>

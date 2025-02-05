@@ -16,8 +16,42 @@ import PickSize from "./PickSize";
 import Extras from "./Extras";
 import { ProductWithRelations } from "@/types/product";
 import DoughType from "./DoughType";
+import { useAppSelector } from "@/redux/hooks";
+import { selectCartItems } from "@/redux/features/cart/cartSlice";
+import { Dough, DoughTypes, Extra, ProductSizes, Size } from "@prisma/client";
+import { useState } from "react";
+import { formatCurrency } from "@/lib/formatters";
 
 function AddToCartButton({ item }: { item: ProductWithRelations }) {
+  const cart = useAppSelector(selectCartItems);
+  const defaultSize =
+    cart.find((element) => element.id === item.id)?.size ||
+    item.Size.find((size) => size.name === ProductSizes.Small);
+
+  const defaultDough =
+    cart.find((element) => element.id === item.id)?.dough ||
+    item.Dough.find((dough) => dough.name === DoughTypes.Pan);
+
+  const defaultExtras =
+    cart.find((element) => element.id === item.id)?.extras || [];
+
+  const [selectedSize, setSelectedSize] = useState<Size>(defaultSize!);
+  const [selectedDough, setSelectedDough] = useState<Dough>(defaultDough!);
+  const [selectedExtras, setSelectedExtras] = useState<Extra[]>(defaultExtras);
+
+  let totalPrice = item.basePrice;
+  if (selectedSize) {
+    totalPrice += selectedSize.price;
+  }
+  if (selectedDough) {
+    totalPrice += selectedDough.price;
+  }
+  if (selectedExtras.length > 0) {
+    for (const extra of selectedExtras) {
+      totalPrice += extra.price;
+    }
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -40,20 +74,33 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
         <div className="space-y-10">
           <div className="space-y-4 text-center">
             <Label htmlFor="pick-size">Pick your size</Label>
-            <PickSize Sizes={item.Size} item={item} />
+            <PickSize
+              Sizes={item.Size}
+              item={item}
+              selectedSize={selectedSize}
+              setSelectedSize={setSelectedSize}
+            />
           </div>
           <div className="space-y-4 text-center">
             <Label htmlFor="dough-type">Choose the dough</Label>
-            <DoughType types={item.Dough} />
+            <DoughType
+              types={item.Dough}
+              selectedDough={selectedDough}
+              setSelectedDough={setSelectedDough}
+            />
           </div>
           <div className="space-y-4 text-center">
             <Label htmlFor="add-extras">Any extras?</Label>
-            <Extras extras={item.extras} />
+            <Extras
+              extras={item.extras}
+              selectedExtras={selectedExtras}
+              setSelectedExtras={setSelectedExtras}
+            />
           </div>
         </div>
         <DialogFooter>
           <Button type="submit" className="w-full h-10">
-            Save changes
+            Add to cart {formatCurrency(totalPrice)}
           </Button>
         </DialogFooter>
       </DialogContent>

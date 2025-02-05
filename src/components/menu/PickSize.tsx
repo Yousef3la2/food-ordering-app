@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
@@ -9,9 +8,13 @@ import { Size } from "@prisma/client";
 function PickSize({
   Sizes,
   item,
+  selectedSize,
+  setSelectedSize,
 }: {
   Sizes: Size[];
   item: ProductWithRelations;
+  selectedSize: Size;
+  setSelectedSize: React.Dispatch<React.SetStateAction<Size>>;
 }) {
   return (
     <RadioGroup defaultValue="-" className="grid grid-cols-2 gap-4">
@@ -20,7 +23,12 @@ function PickSize({
           key={size.id}
           className="flex items-center space-x-2 border border-gray-100 rounded-md p-4 "
         >
-          <RadioGroupItem value={String(size.name)} id={String(size.id)} />
+          <RadioGroupItem
+            value={selectedSize.name}
+            id={String(size.id)}
+            checked={selectedSize.id === size.id}
+            onClick={() => setSelectedSize(size)}
+          />
           <Label htmlFor={String(size.id)}>
             {size.name} {formatCurrency(size.price + item.basePrice)}
           </Label>

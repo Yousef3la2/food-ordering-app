@@ -3,6 +3,7 @@ import Link from "../link";
 import { Routes } from "@/constants/enums";
 import Navbar from "./navbar";
 import Image from "next/image";
+import CartButton from "./cart-button";
 
 function Header() {
   return (
@@ -22,6 +23,7 @@ function Header() {
           />
         </Link>
         <Navbar />
+        <CartButton />
       </div>
     </header>
   );
