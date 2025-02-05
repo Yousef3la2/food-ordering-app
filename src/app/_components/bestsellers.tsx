@@ -4,7 +4,7 @@ import { db } from "@/lib/prisma";
 
 async function BestSellers() {
   const bestSellers = await db.product.findMany({
-    include: { Size: true, extras: true },
+    include: { Size: true, extras: true, Dough: true },
   });
   console.log(bestSellers);
   return (

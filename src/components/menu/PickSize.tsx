@@ -14,11 +14,11 @@ function PickSize({
   item: ProductWithRelations;
 }) {
   return (
-    <RadioGroup defaultValue="comfortable">
+    <RadioGroup defaultValue="comfortable" className="grid grid-cols-2 gap-4">
       {Sizes.map((size) => (
         <div
           key={size.id}
-          className="flex items-center space-x-2 border border-gray-100 rounded-md p-4"
+          className="flex items-center space-x-2 border border-gray-100 rounded-md p-4 "
         >
           <RadioGroupItem value={String(size.name)} id={String(size.id)} />
           <Label htmlFor={String(size.id)}>

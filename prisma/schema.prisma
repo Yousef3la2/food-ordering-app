@@ -24,6 +24,7 @@ model Product {
   updatedAt   DateTime @updatedAt
   Size        Size[]
   extras      Extra[]
+  Dough       Dough[]
 }
 
 model Size {
@@ -54,4 +55,20 @@ enum ExtraIngredients {
   Garlic
   Tomato
   Mushroom
+}
+
+model Dough {
+  id        String     @id @default(cuid())
+  name      DoughTypes
+  price     Float
+  product   Product    @relation(fields: [productId], references: [id])
+  productId String
+}
+
+enum DoughTypes {
+  Pan
+  ThinAndCrispy
+  StuffedCrust
+  BeefAndCheddarStuffed
+  CheesyBites
 }

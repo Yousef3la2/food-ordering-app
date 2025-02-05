@@ -4,5 +4,6 @@ export type ProductWithRelations = Prisma.ProductGetPayload<{
     include: {
         Size: true;
         extras: true;
+        Dough: true;
     };
 }>

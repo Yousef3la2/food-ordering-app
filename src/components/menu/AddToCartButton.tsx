@@ -13,18 +13,9 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "../ui/label";
 import PickSize from "./PickSize";
-// import DoughType from "./DoughType";
 import Extras from "./Extras";
-
 import { ProductWithRelations } from "@/types/product";
-
-// const types = [
-//   { id: crypto.randomUUID, name: "Pan", price: 0 },
-//   { id: crypto.randomUUID, name: "Thin 'n' Crispy", price: 0 },
-//   { id: crypto.randomUUID, name: "Stuffed Crust", price: 7 },
-//   { id: crypto.randomUUID, name: "Cheesy Bites", price: 8 },
-//   { id: crypto.randomUUID, name: "Beef n Chedder Stuffed", price: 8 },
-// ];
+import DoughType from "./DoughType";
 
 function AddToCartButton({ item }: { item: ProductWithRelations }) {
   return (
@@ -38,7 +29,7 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
           <span>Add To Cart</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] max-h-[80vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[500px] max-h-[85vh] overflow-y-auto">
         <DialogHeader className="flex items-center">
           <Image src={item.image} alt={item.name} width={200} height={200} />
           <DialogTitle>{item.name}</DialogTitle>
@@ -51,10 +42,10 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
             <Label htmlFor="pick-size">Pick your size</Label>
             <PickSize Sizes={item.Size} item={item} />
           </div>
-          {/* <div className="space-y-4 text-center">
+          <div className="space-y-4 text-center">
             <Label htmlFor="dough-type">Choose the dough</Label>
-            <DoughType types={types} />
-          </div> */}
+            <DoughType types={item.Dough} />
+          </div>
           <div className="space-y-4 text-center">
             <Label htmlFor="add-extras">Any extras?</Label>
             <Extras extras={item.extras} />
