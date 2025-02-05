@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-//import { deliveryFee, getSubTotal } from "@/lib/cart";
+import { deliveryFee, getSubTotal } from "@/lib/cart";
 import { formatCurrency } from "@/lib/formatters";
 import {
   removeItemFromCart,
@@ -10,16 +10,16 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
-//import { useEffect } from "react";
+import { useEffect } from "react";
 
 function CartItems() {
   const cart = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
-  //const subTotal = getSubTotal(cart);
+  const subTotal = getSubTotal(cart);
 
-  // useEffect(() => {
-  //   localStorage.setItem("cartItems", JSON.stringify(cart));
-  // }, [cart]);
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <div>
@@ -76,7 +76,9 @@ function CartItems() {
                   </div>
                   <div className="flex-1 flex items-center gap-4 justify-end">
                     <strong className="text-black ">
-                      {formatCurrency(item.basePrice)}
+                      {formatCurrency(
+                        item.basePrice + (item.dough?.price || 0)
+                      )}
                     </strong>
                     <Button
                       onClick={() =>
@@ -95,18 +97,18 @@ function CartItems() {
           <div className="flex flex-col justify-end items-end pt-6">
             <span className="text-accent font-medium">
               Subtotal:
-              {/* <strong className="text-black">{formatCurrency(subTotal)}</strong> */}
+              <strong className="text-black">{formatCurrency(subTotal)}</strong>
             </span>
             <span className="text-accent font-medium">
               Delivery:
               <strong className="text-black">
-                {/* {formatCurrency(deliveryFee)} */}
+                {formatCurrency(deliveryFee)}
               </strong>
             </span>
             <span className="text-accent font-medium">
               Total:
               <strong className="text-black">
-                {/* {formatCurrency(subTotal + deliveryFee)} */}
+                {formatCurrency(subTotal + deliveryFee)}
               </strong>
             </span>
           </div>
