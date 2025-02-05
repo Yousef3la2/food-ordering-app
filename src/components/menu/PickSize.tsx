@@ -14,7 +14,7 @@ function PickSize({
   item: ProductWithRelations;
 }) {
   return (
-    <RadioGroup defaultValue="comfortable" className="grid grid-cols-2 gap-4">
+    <RadioGroup defaultValue="-" className="grid grid-cols-2 gap-4">
       {Sizes.map((size) => (
         <div
           key={size.id}
