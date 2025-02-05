@@ -16,14 +16,15 @@ import PickSize from "./PickSize";
 import Extras from "./Extras";
 import { ProductWithRelations } from "@/types/product";
 import DoughType from "./DoughType";
-import { useAppSelector } from "@/redux/hooks";
-import { selectCartItems } from "@/redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addCartItem, selectCartItems } from "@/redux/features/cart/cartSlice";
 import { Dough, DoughTypes, Extra, ProductSizes, Size } from "@prisma/client";
 import { useState } from "react";
 import { formatCurrency } from "@/lib/formatters";
 
 function AddToCartButton({ item }: { item: ProductWithRelations }) {
   const cart = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
   const defaultSize =
     cart.find((element) => element.id === item.id)?.size ||
     item.Size.find((size) => size.name === ProductSizes.Small);
@@ -51,6 +52,20 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
       totalPrice += extra.price;
     }
   }
+
+  const handleAddToCart = () => {
+    dispatch(
+      addCartItem({
+        basePrice: item.basePrice,
+        id: item.id,
+        image: item.image,
+        name: item.name,
+        size: selectedSize,
+        dough: selectedDough,
+        extras: selectedExtras,
+      })
+    );
+  };
 
   return (
     <Dialog>
@@ -99,7 +114,11 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" className="w-full h-10">
+          <Button
+            type="submit"
+            onClick={handleAddToCart}
+            className="w-full h-10"
+          >
             Add to cart {formatCurrency(totalPrice)}
           </Button>
         </DialogFooter>
