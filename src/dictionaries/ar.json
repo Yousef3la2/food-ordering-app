@@ -1,0 +1,224 @@
+{
+    "logo": "بيتزا هت",
+    "home": {
+      "hero": {
+        "title": "قطعة من السعادة",
+        "description": "تشعر برغبة في البيتزا؟ لدينا ما يلبي رغبتك مع المكونات الطازجة، والنكهات التي لا تنتهي، والتوصيل الأسرع. قطعتك المثالية على بعد نقرة واحدة!",
+        "orderNow": "اطلب الآن",
+        "learnMore": "اعرف المزيد"
+      },
+      "bestSeller": {
+        "checkOut": "اكتشف",
+        "OurBestSellers": "أفضل مبيعاتنا"
+      },
+      "about": {
+        "ourStory": "قصتنا",
+        "aboutUs": "معلومات عنا",
+        "descriptions": {
+            "one": "في بيتزا هت، نؤمن أن كل وجبة هي فرصة لجمع الناس معًا. منذ عام 1958، نقوم بتقديم البيتزا اللذيذة المصنوعة من أجود المكونات، والمقدمة بحب وعناية. ما بدأ كمكان صغير للبيتزا في كانساس، الولايات المتحدة الأمريكية، أصبح الآن واحدة من أكبر سلاسل البيتزا في العالم، حيث نخدم ملايين العملاء يوميًا حول العالم.",
+            "two": "رحلتنا تدور حول الابتكار والجودة والالتزام بخلق تجارب طعام لا تُنسى لكم. نمزج بين التقاليد واللمسة العصرية، لنقدم لكم مجموعة واسعة من البيتزا، والمعكرونة، والأطباق الجانبية، والحلويات لتلبية كل شغف. سواء كنت تطلب لعشاء عائلي، أو احتفال خاص، أو استراحة غداء سريعة، بيتزا هت هنا لجعل كل لحظة أفضل."
+          }
+      },
+      "contact": {
+        "Don'tHesitate": "لا تتردد",
+        "contactUs": "اتصل بنا"
+      }
+    },
+    "navbar": {
+      "home": "الصفحة الرئيسية",
+      "about": "معلومات عنا",
+      "menu": "القائمة",
+      "contact": "تواصل معنا",
+      "login": "تسجيل الدخول",
+      "register": "انشاء حساب",
+      "signOut": "تسجيل الخروج",
+      "profile": "الملف الشخصي",
+      "admin": "المسؤول"
+    },
+    "auth": {
+      "login": {
+        "title": "مرحبًا بعودتك",
+        "name": {
+          "label": "الاسم",
+          "placeholder": "أدخل اسمك"
+        },
+        "email": {
+          "label": "البريد الإلكتروني",
+          "placeholder": "أدخل بريدك الإلكتروني"
+        },
+        "password": {
+          "label": "كلمة المرور",
+          "placeholder": "أدخل كلمة المرور"
+        },
+        "submit": "تسجيل الدخول",
+        "authPrompt": {
+          "message": "ليس لديك حساب؟ ",
+          "signUpLinkText": "سجل الآن"
+        }
+      },
+      "register": {
+        "title": "إنشاء حساب",
+        "name": {
+          "label": "الاسم",
+          "placeholder": "أدخل اسمك"
+        },
+        "email": {
+          "label": "البريد الإلكتروني",
+          "placeholder": "أدخل بريدك الإلكتروني"
+        },
+        "password": {
+          "label": "كلمة المرور",
+          "placeholder": "أدخل كلمة المرور"
+        },
+        "confirmPassword": {
+          "label": "تأكيد كلمة المرور",
+          "placeholder": "أعد إدخال كلمة المرور"
+        },
+        "submit": "إنشاء حساب",
+        "authPrompt": {
+          "message": "هل لديك حساب؟ ",
+          "loginLinkText": "تسجيل الدخول"
+        }
+      }
+    },
+    "validation": {
+      "nameRequired": "الاسم مطلوب",
+      "validEmail": "يجب أن يكون بريد إلكتروني صالح",
+      "passwordMinLength": "يجب أن تكون كلمة المرور على الأقل 6 أحرف",
+      "passwordMaxLength": "يجب أن تكون كلمة المرور على الأكثر 40 حرفًا",
+      "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
+      "passwordMismatch": "كلمة المرور غير متطابقة"
+    },
+    "messages": {
+      "userNotFound": "المستخدم غير موجود",
+      "incorrectPassword": "كلمة المرور غير صحيحة",
+      "loginSuccessful": "تم تسجيل الدخول بنجاح",
+      "unexpectedError": "حدث خطأ غير متوقع",
+      "userAlreadyExists": "المستخدم موجود بالفعل",
+      "accountCreated": "تم إنشاء الحساب بنجاح",
+      "updateProfileSucess": "تم تحديث الملف الشخصي بنجاح",
+      "categoryAdded": "تم اضافة الفئة بنجاح",
+      "updatecategorySucess": "تم تحديث الفئة بنجاح",
+      "deleteCategorySucess": "تم حذف الفئة بنجاح",
+      "productAdded": "تم اضافة المنتج بنجاح",
+      "updateProductSucess": "تم تحديث المنتج بنجاح",
+      "deleteProductSucess": "تم حذف المنتج بنجاح",
+      "updateUserSucess": "تم تحديث المستخدم بنجاح",
+      "deleteUserSucess": "تم حذف المستخدم بنجاح"
+    },
+    "menuItem": {
+      "addToCart": "أضف الي العربة"
+    },
+    "profile": {
+      "title": "الملف الشخصي",
+      "form": {
+        "name": {
+          "label": "الاسم",
+          "placeholder": "أدخل اسمك"
+        },
+        "email": {
+          "label": "البريد الإلكتروني",
+          "placeholder": "أدخل بريدك الإلكتروني"
+        },
+        "phone": {
+          "label": "الهاتف",
+          "placeholder": "أدخل رقم هاتفك",
+          "validation": {
+            "required": "رقم الهاتف مطلوب",
+            "invalid": "يرجى إدخال رقم هاتف صالح"
+          }
+        },
+        "address": {
+          "label": "العنوان",
+          "placeholder": "أدخل عنوانك",
+          "validation": {
+            "required": "العنوان مطلوب"
+          }
+        },
+        "specialRequest": {
+          "label": "قم بإضافة ملاحظاتك الخاصة هنا.",
+          "placeholder": "مثلاً إذا كان لديك حساسية من نوع طعام معين أو تود ذكر تعليمات إضافية للسائق"
+        }
+      }
+    },
+    "admin": {
+      "tabs": {
+        "profile": "الملف الشخصي",
+        "categories": "الفئات",
+        "menuItems": "عناصر القائمة",
+        "users": "المستخدمون",
+        "orders": "الطلبات"
+      },
+      "categories": {
+        "form": {
+          "editName": "تعديل اسم الفئة",
+          "name": {
+            "label": "اسم الفئة",
+            "placeholder": "أدخل اسم الفئة",
+            "validation": {
+              "required": "اسم الفئة مطلوب"
+            }
+          }
+        }
+      },
+      "menu-items": {
+        "createNewMenuItem": "إنشاء عنصر قائمة جديد",
+        "addItemSize": "إضافة حجم العنصر",
+        "addExtraItem": "إضافة عنصر إضافي",
+        "menuOption": {
+          "name": "الاسم",
+          "extraPrice": "السعر الاضافي"
+        },
+        "form": {
+          "name": {
+            "label": "اسم العنصر",
+            "placeholder": "أدخل اسم العنصر",
+            "validation": {
+              "required": "اسم العنصر مطلوب"
+            }
+          },
+          "description": {
+            "label": "اسم الوصف",
+            "placeholder": "أدخل اسم الوصف",
+            "validation": {
+              "required": "اسم الوصف مطلوب"
+            }
+          },
+          "basePrice": {
+            "label": "السعر الأساسي",
+            "placeholder": "أدخل السعر الأساسي",
+            "validation": {
+              "required": "السعر الأساسي مطلوب"
+            }
+          },
+          "category": {
+            "validation": {
+              "required": "اختيار الفئة مطلوب"
+            }
+          },
+          "image": {
+            "validation": {
+              "required": "صورة المنتج مطلوبة"
+            }
+          }
+        }
+      }
+    },
+    "category": "الفئة",
+    "save": "حفظ",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "create": "انشاء",
+    "sizes": "الأحجام",
+    "dough": "العجينة",
+    "extrasIngredients": "عناصر اضافية",
+    "cancel": "الغاء",
+    "cart": {
+      "title": "عربة التسوق",
+      "noItemsInCart": "لا توجد عناصر في سلة التسوق الخاصة بك. أضف بعضًا"
+    },
+  
+    "copyRight": "© 2025 جميع الحقوق محفوظة",
+    "noProductsFound": "لم يتم العثور على منتجات",
+    "noCategoriesFound": "لم يتم العثور على الفئات"
+  }

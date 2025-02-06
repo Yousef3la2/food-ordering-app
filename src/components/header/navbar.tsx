@@ -5,29 +5,32 @@ import Link from "../link";
 import { Pages, Routes } from "@/constants/enums";
 import { Button, buttonVariants } from "../ui/button";
 import { Menu, XIcon } from "lucide-react";
+import { useParams, usePathname } from "next/navigation";
 
-function Navbar() {
+function Navbar({ translations }: { translations: { [key: string]: string } }) {
   const [openMenu, setOpenMenu] = useState(false);
+  const { locale } = useParams();
+  const pathname = usePathname();
 
   const links = [
     {
       id: crypto.randomUUID(),
-      title: "Menu",
+      title: translations.menu,
       href: Routes.MENU,
     },
     {
       id: crypto.randomUUID(),
-      title: "About",
+      title: translations.about,
       href: Routes.ABOUT,
     },
     {
       id: crypto.randomUUID(),
-      title: "Contact",
+      title: translations.contact,
       href: Routes.CONTACT,
     },
     {
       id: crypto.randomUUID(),
-      title: "Login",
+      title: translations.login,
       href: `${Routes.AUTH}/${Pages.LOGIN}`,
     },
   ];
@@ -58,12 +61,16 @@ function Navbar() {
         {links.map((link) => (
           <li key={link.id}>
             <Link
-              href={link.href}
+              href={`/${locale}/${link.href}`}
               className={`${
                 link.href === `${Routes.AUTH}/${Pages.LOGIN}`
                   ? `${buttonVariants({ size: "lg" })} !px-8 !rounded-full`
                   : "text-accent hover:text-primary duration-200 transition-colors"
-              } font-semibold`}
+              } font-semibold ${
+                pathname.startsWith(`/${locale}/${link.href}`)
+                  ? "text-primary"
+                  : "text-accent"
+              }`}
             >
               {link.title}
             </Link>

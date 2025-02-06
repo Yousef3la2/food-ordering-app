@@ -1,7 +1,11 @@
+import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import MenuItem from "./menuItem";
 import { ProductWithRelations } from "@/types/product";
+import getTrans from "@/lib/translation";
 
-function Menu({ items }: { items: ProductWithRelations[] }) {
+async function Menu({ items }: { items: ProductWithRelations[] }) {
+  const locale = await getCurrentLocale();
+  const { noProductsFound } = await getTrans(locale);
   return items.length > 0 ? (
     <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {items.map((item) => (
@@ -9,7 +13,7 @@ function Menu({ items }: { items: ProductWithRelations[] }) {
       ))}
     </ul>
   ) : (
-    <p className="text-accent text-center">noProductsFound</p>
+    <p className="text-accent text-center">{noProductsFound}</p>
   );
 }
 

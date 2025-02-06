@@ -1,6 +1,6 @@
 import { RootState } from '@/redux/store';
 import { Extra, Size, Dough } from '@prisma/client';
-import { createSlice, PayloadAction, } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type CartItem = {
   name: string;
@@ -9,7 +9,7 @@ export type CartItem = {
   basePrice: number;
   quantity?: number;
   size?: Size;
-  dough?:  Dough;
+  dough?: Dough;
   extras?: Extra[];
 };
 
@@ -17,11 +17,18 @@ type CartState = {
   items: CartItem[];
 };
 
-const initialCartItems = localStorage.getItem('cartItems');
+// Initialize cart items safely for SSR
+const getInitialCartItems = (): CartItem[] => {
+  if (typeof window !== 'undefined') {
+    const savedCartItems = localStorage.getItem('cartItems');
+    return savedCartItems ? JSON.parse(savedCartItems) : [];
+  }
+  return []; // Return empty array during SSR
+};
 
 const initialState: CartState = {
-    items: initialCartItems? JSON.parse(initialCartItems) : [],
-  };
+  items: getInitialCartItems(),
+};
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -39,6 +46,10 @@ export const cartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, quantity: 1 });
       }
+      // Save updated cart to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cartItems', JSON.stringify(state.items));
+      }
     },
     removeCartItem: (state, action: PayloadAction<{ id: string }>) => {
       const item = state.items.find((item) => item.id === action.payload.id);
@@ -51,18 +62,31 @@ export const cartSlice = createSlice({
           item.quantity! -= 1;
         }
       }
+      // Save updated cart to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cartItems', JSON.stringify(state.items));
+      }
     },
     removeItemFromCart: (state, action: PayloadAction<{ id: string }>) => {
-      state.items = state.items = state.items.filter(
+      state.items = state.items.filter(
         (item) => item.id !== action.payload.id
       );
+      // Save updated cart to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cartItems', JSON.stringify(state.items));
+      }
     },
     clearCart: (state) => {
       state.items = [];
-    }
+      // Clear localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('cartItems');
+      }
+    },
   },
 });
-export const { addCartItem, removeCartItem, removeItemFromCart } =
+
+export const { addCartItem, removeCartItem, removeItemFromCart, clearCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
