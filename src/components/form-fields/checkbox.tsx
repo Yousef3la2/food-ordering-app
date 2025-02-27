@@ -13,11 +13,10 @@ const Checkbox = ({ label, name, checked, onClick }: Props) => {
   return (
     <div className="text-accent flex items-center gap-2">
       <ShadcnCheckbox
-        type="button"
         id={name}
         name={name}
-        onClick={onClick}
         checked={checked}
+        onCheckedChange={onClick} // ✅ Change this line
       />
       <Label htmlFor={name} className="text-sm font-normal">
         {label}

@@ -108,9 +108,6 @@ type Field = {
         email: Field;
         phone: Field;
         address: Field;
-        postalCode: Field;
-        city: Field;
-        country: Field;
       };
     };
     admin: {
@@ -178,13 +175,15 @@ type Field = {
       };
     };
     sizes: string;
-    doughs: string;
+    dough: string;
     extrasIngredients: string;
     delete: string;
+    edit: string;
     cancel: string;
     create: string;
     save: string;
     category: string;
     copyRight: string;
     noProductsFound: string;
+    noCategoriesFound: string;
   };

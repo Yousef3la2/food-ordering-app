@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { InputTypes } from "@/constants/enums";
 import TextField from "./text-field";
 import PasswordField from "./password-field";
 import { IFormField } from "@/types/app";
 import Checkbox from "./checkbox";
+import { ValidationErrors } from "@/validations/auth";
 
 interface Props extends IFormField {
-  error: any;
+  error: ValidationErrors;
+  label?: string;
 }
 
 const FormFields = (props: Props) => {

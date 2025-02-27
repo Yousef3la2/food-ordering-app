@@ -163,6 +163,7 @@
       },
       "menu-items": {
         "createNewMenuItem": "Create new menu item",
+        "addItemDough": "Add item dough",
         "addItemSize": "Add item size",
         "addExtraItem": "Add extra item",
         "menuOption": {

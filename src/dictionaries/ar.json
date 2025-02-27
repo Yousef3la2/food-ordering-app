@@ -163,6 +163,7 @@
       },
       "menu-items": {
         "createNewMenuItem": "إنشاء عنصر قائمة جديد",
+        "addItemDough": "إضافة عجينة العنصر",
         "addItemSize": "إضافة حجم العنصر",
         "addExtraItem": "إضافة عنصر إضافي",
         "menuOption": {

@@ -75,24 +75,6 @@ const useFormFields = ({ slug, translations }: Props) => {
       type: "text",
       placeholder: translations.profile.form.address.placeholder,
     },
-    {
-      label: translations.profile.form.postalCode.label,
-      name: "postalCode",
-      type: "text",
-      placeholder: translations.profile.form.postalCode.placeholder,
-    },
-    {
-      label: translations.profile.form.city.label,
-      name: "city",
-      type: "text",
-      placeholder: translations.profile.form.city.placeholder,
-    },
-    {
-      label: translations.profile.form.country.label,
-      name: "country",
-      type: "text",
-      placeholder: translations.profile.form.country.placeholder,
-    },
   ];
 
   const addProductFields = (): IFormField[] => [

@@ -4,8 +4,8 @@ import FormFields from "@/components/form-fields/form-fields";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/ui/loader";
 import { Pages } from "@/constants/enums";
-// import { toast } from "@/hooks/use-toast";
 import useFormFields from "@/hooks/useFormFields";
+import { toast } from "@/hooks/use-toast";
 import { IFormField } from "@/types/app";
 import { Translations } from "@/types/translations";
 import { signIn } from "next-auth/react";
@@ -41,21 +41,21 @@ function Form({ translations }: { translations: Translations }) {
       if (res?.error) {
         const validationError = JSON.parse(res?.error).validationError;
         setError(validationError);
-        //const responseError = JSON.parse(res?.error).responseError;
-        // if (responseError) {
-        //   toast({
-        //     title: responseError,
-        //     className: "text-destructive",
-        //   });
-        // }
+        const responseError = JSON.parse(res?.error).responseError;
+        if (responseError) {
+          toast({
+            title: responseError,
+            className: "text-destructive",
+          });
+        }
       }
-      //   if (res?.ok) {
-      //     toast({
-      //       title: translations.messages.loginSuccessful,
-      //       className: "text-green-400",
-      //     });
-      //     router.replace(`/${locale}/${Routes.PROFILE}`);
-      //   }
+      if (res?.ok) {
+        toast({
+          title: translations.messages.loginSuccessful,
+          className: "text-green-400",
+        });
+        //router.replace(`/${locale}/${Routes.PROFILE}`);
+      }
     } catch (error) {
       console.log(error);
     } finally {
