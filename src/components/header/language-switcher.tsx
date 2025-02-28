@@ -28,6 +28,7 @@ const LanguageSwitcher = () => {
         <Button
           variant="outline"
           onClick={() => switchLanguage(Languages.ARABIC)}
+          className={"font-[Cairo]"}
         >
           العربية
         </Button>
