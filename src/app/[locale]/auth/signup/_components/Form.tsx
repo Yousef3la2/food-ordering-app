@@ -35,15 +35,21 @@ function Form({ translations }: { translations: Translations }) {
 
   useEffect(() => {
     if (state.status && state.message) {
-      toast({
+      const toastInstance = toast({
         title: state.message,
         className: state.status === 201 ? "text-green-400" : "text-destructive",
       });
+
+      setTimeout(() => {
+        toastInstance.dismiss();
+      }, 5000);
     }
+
     if (state.status === 201) {
       router.replace(`/${locale}/${Routes.AUTH}/${Pages.LOGIN}`);
     }
   }, [locale, router, state.message, state.status]);
+
   return (
     <form action={action}>
       {getFormFields().map((field: IFormField) => {
