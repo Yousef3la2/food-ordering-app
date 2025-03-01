@@ -2,8 +2,8 @@ import Link from "@/components/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Pages, Routes } from "@/constants/enums";
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
-import getTrans from "@/lib/translation";
 import Form from "./_components/Form";
+import getTrans from "@/lib/translation";
 
 async function SigninPage() {
   const locale = await getCurrentLocale();
